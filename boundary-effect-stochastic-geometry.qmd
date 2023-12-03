@@ -19,7 +19,7 @@ Frankie Higgs and Mathew Penrose (University of Bath)
 
 ## connectivity threshold 
 
-defs
+defxxx
 
 $$
 R_{n,k} = \inf\{r: G(X,r)\in \mathcal K\} \\
