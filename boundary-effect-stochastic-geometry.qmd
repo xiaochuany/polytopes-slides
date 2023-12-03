@@ -1,0 +1,88 @@
+---
+title: "Boundary effects in some stochastic geometric models"
+author: Xiaochuan Yang (Brunel University)
+institute: APATG seminar
+date: today
+# subtitle: main effects of some problems in stochastic geometry
+format: 
+    revealjs:
+        chalkboard: true
+        theme: dark
+        callout-appearance: simple
+---
+
+##  {.center}
+:::{.callout-important}
+## joint work with
+Frankie Higgs and Mathew Penrose (University of Bath)
+:::
+
+## connectivity threshold 
+
+$$
+R_{n,k} = \inf\{r: G(X,r)\in \mathcal K\} \\
+L_{n,k} = \inf\{r: G \}
+$$
+
+---
+
+```{python}
+import numpy as np
+from scipy.stats import genextreme
+import matplotlib.pyplot as plt
+fig, ax = plt.subplots(1, 1)
+
+c = 0
+x = np.linspace(genextreme.ppf(0.01, c),
+                genextreme.ppf(0.99, c), 100)
+ax.plot(x, genextreme.pdf(x, c),
+       'r-', lw=5, alpha=0.6, label='genextreme pdf')
+```
+
+---
+
+new slides
+
+
+:::{.incremental}
+- a
+- b
+:::
+
+
+---
+
+:::: {.columns}
+
+::: {.column width="40%"}
+contents...
+
+
+:::{.incremental}
+- a
+- b
+:::
+
+:::
+
+::: {.column width="60%"}
+contents...
+:::
+
+::::
+
+
+---
+
+:::{.callout-tip}
+## Thoerem
+new theorem
+new
+:::
+
+
+::: {.callout-caution collapse="true"}
+## Expand To Learn About Collapse
+
+This is an example of a 'folded' caution callout that can be expanded by the user. You can use `collapse="true"` to collapse it by default or `collapse="false"` to make a collapsible callout that is expanded by default.
+:::
