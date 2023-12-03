@@ -1,5 +1,8 @@
 project:
   title: "Slides"
+  
+execute: 
+  freeze: auto
 
 
 
