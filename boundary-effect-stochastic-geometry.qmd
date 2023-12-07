@@ -9,6 +9,7 @@ format:
         chalkboard: true
         theme: dark
         callout-appearance: simple
+        # incremental: true 
 ---
 
 ##  {.center}
@@ -17,74 +18,173 @@ format:
 Frankie Higgs and Mathew Penrose (University of Bath)
 :::
 
-## connectivity threshold 
+## largest nearest neighbour link 
 
-defxxx
-
-$$
-R_{n,k} = \inf\{r: G(X,r)\in \mathcal K\} \\
-L_{n,k} = \inf\{r: G \}
-$$
-
----
-
-```{python}
-import numpy as np
-from scipy.stats import genextreme
-import matplotlib.pyplot as plt
-fig, ax = plt.subplots(1, 1)
-
-c = 0
-x = np.linspace(genextreme.ppf(0.01, c),
-                genextreme.ppf(0.99, c), 100)
-ax.plot(x, genextreme.pdf(x, c),
-       'r-', lw=5, alpha=0.6, label='genextreme pdf')
-```
-
----
-
-new slides
+Given a sample $\mathcal X$ in $A$, the LNNL tells us how far the most isolated point is from the others
 
 
-:::{.incremental}
-- a
-- b
+- $L_n = \max_{x} dist(x, \mathcal X\setminus \{x\})$
+- $L_n = \inf\{r: \deg(x) \ge 1,  \ \forall x \in G(\mathcal X, r)\}$
+- 
+:::{.fragment .highlight-red}
+$L_n = \inf\{r: \mathcal X(B(x,r))\ge 2, \ \forall x\in\mathcal X \}$  
+:::
+
+:::{.fragment}
+similarly $L_{n,k}$
 :::
 
 
----
+## full coverage threshold
+$$R_{n,k} = \inf\{ r: \mathcal X(B(x,r))\ge k, \ \forall x\in A \}$$
+
+- $$
+L_{n} \le R_{n,2}
+$$
+- $$ L_{n,k} \le R_{n,k+1}$$
+
+## connectivity threshold
+:::{.callout-note}
+A graph is $k$-connected, denoted $\mathcal K_k$, if the removal of $k-1$ vertices does not disconnect the graph. 
+:::
+$$M_{n,k} = \inf\{r: G(\mathcal X,r) \in \mathcal K_k \}$$
+
+x-x  x-x
+
+$$L_{n,k} \le M_{n,k}$$
+
+## Result
+
+
+:::{.callout-tip}
+Let $\mathcal X = \mathcal P_n$.
+Under conditions on $A$, we have the strong law 
+$$ \frac{n L_{n}^d}{\log n} \sim \frac{n M_{n}^d}{\log n} \sim \frac{n R_{n}^d}{\log n}\sim c$$
+where $c$ depends on the geometry of $A$.
+:::
 
 :::: {.columns}
-
 ::: {.column width="40%"}
-contents...
-
-
-:::{.incremental}
-- a
-- b
-:::
-
+- general $k = k(n)$
+- binomial process
+- non-uniform 
 :::
 
 ::: {.column width="60%"}
-contents...
+- Penrose, PTRF'22, book
+- Penrose, Y, Higgs, '23
 :::
-
 ::::
 
+## finite convex polytope
 
----
+Let $k=k(n)\sim \beta \log(n)$ with $\beta \in [0,\infty]$. Then 
+
+$$ c = \max_{\phi\in\Phi^*(A)} \frac{\hat H_\beta(D(\phi)/d)}{f_\phi \rho_\phi}$$
+
+- $\hat H_0(x)=x, \hat H_\infty(x)=1$
+- $\Phi^*(A)$: faces of $A$, including $A^o$ viewed as $d$-dim face
+- $D(\phi)$ is the dimension of the face $\phi$
+- $f_\phi = \inf_{x\in\phi} f(x)$ where $f$ is density
+- $\rho_\phi = |B(o,1)\cap \kappa_\phi|$ angular volume of face $\phi$
+
+
+## Proof: granulation
+
+Want to show some threshold $\sim r_n$
+
+- draw grid of spacing $\varepsilon r_n$
+- random point "activates" closest grid point
+- count relevant grid patterns
+
+:::{.incremental}
+let's implement this twice, 1 for torus,  2 for metric space 
+:::
+
+
+## $n L_n^d \ge c\log n$: 
+
+- assume $\{L_n \le r_n\}$ happens with $n r_n^d = c\log n$
+- at each $\varepsilon_1 r_n$ lattice point, EITHER non-activated OR at least two points within $(1+2\varepsilon_1)r_n$
+$$\mathbb P[ . \cup ..]\le  1 - \eta \mathbb P[\{..\}^c]$$
+  <!-- n\theta_d^+ r_n^d \exp(- n\theta_d^+ r_n^d) -->
+- keeps lattices distant $3r_n$ from each other, by independence
+$$ \mathbb (1- ...)^{c_1 r_n^{-d}} = O(\exp(-  n^{1-\theta_d c}))\to 0$$
+provided $c < 1/\theta_d$
+
+## $n L_n^d \ge c\log n$:
+
+
+- a portion of $A$ is $r$-packed with packing number $\Omega(r^{-b})$
+- $\mu(B(x,r))\ge a r^d$ for every $x$ in that portion
+
+$$ \mathbb (1- (\eta/k!) (n ar^d)^k e^{- n ar^d} )^{c_1 r_n^{-b}} = O(\exp(-   n^{b/d - ac}))\to 0$$
+provided $c< (b/d)/a$
+
+
+## $n M_n^d \le c\log n$: 
+
+suppose $\{M_n > r_n\}$ with $n r_n^d = c\log n$, then one of the following happens 
+
+- $\exists$ isolated point
+- $\exists$ small clusters, $diam \le K r_n$
+- $\exists$ two big clusters, $diam > K r_n$
+
+Implement granulation for each of the above cases. e.g.
+$\mathbb P[\exists iso] \le r_n^{-d} \exp(  - c\theta_d \log n )= n^{1- c\theta_d}\to 0$ provided $c> 1/\theta_d$. 
+
+
+
+## $n M_n^d \le c\log n$: 
+
+- a portion of $A$ is covered by $O(r^{-b})$ balls with radius $r$ and $\mu(B(x,r))\ge a r^d$ for each $x$ in that portion
+- $$\mathbb P[\exists iso \mbox{ in portion}]\le O(r_n^{-b}) \exp(- n a r_n^d) = n^{b/d - ac}\to 0$$
+provided $c>(b/d)/a$. 
+
+- small and big clusters are more complicated, draw on the back
+
+
+:::{.callout-important}
+we need $A$ has a doubling measure (not necessarily $\mu$), connected and unicoherent, balls are connected, and the removal of a ball does not create a big second  component
+:::
+
+
+## {.center}
+
+
+:::{.callout-tip} 
+provided that $A$ has matching covering and packing exponent and one can estimate volume of balls ($G_r\setminus G$) optimally (up to epsilon), all three thresholds are asymptotically the same 
+:::
+
+
+## Isolated points and AB coverage
+
+
+Given $\mathcal X, \mathcal Y$ sampled from $A$
+$$ T = \inf\{r: \mathcal X(B(y,r))\ge 1, \forall y\in \mathcal Y  \}$$
+
+- lower bound of $R_n$, the minimal matching threshold, and connectivity threshold of BRGG
+- related to AB-percolation, Iyer-Yogeshwaren
+
+
+$n\mathbb E[|{x\in A: \mathcal P_n(B(x,r))=0}|] = \int_A \mathbb \exp(- n \theta_d r^d) ndx = \mathbb E[\sharp iso]$
 
 :::{.callout-tip}
-## Thoerem
-new theorem
-new
+$$\mathcal Y(\mbox{uncovered}_{r_n}) \to Po(.) \mbox{ for some } r_n  \Rightarrow  T_n \overset{d}\to (2 compt) Gumbel$$
 :::
 
 
-::: {.callout-caution collapse="true"}
-## Expand To Learn About Collapse
 
-This is an example of a 'folded' caution callout that can be expanded by the user. You can use `collapse="true"` to collapse it by default or `collapse="false"` to make a collapsible callout that is expanded by default.
-:::
+
+## Thanks
+
+
+papers: 
+
+- 2 sample coverage (soon arxiv) 
+- polytope (JACT)
+
+
+code: 
+
+https://github.com/frankiehiggs/connectivity-in-polytopes
