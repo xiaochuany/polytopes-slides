@@ -82,7 +82,7 @@ Let $k=k(n)\sim \beta \log(n)$ with $\beta \in [0,\infty]$. Then
 
 $$ c = \max_{\phi\in\Phi^*(A)} \frac{\hat H_\beta(D(\phi)/d)}{f_\phi \rho_\phi}$$
 
-- $\hat H_0(x)=x, \hat H_\infty(x)=1$
+- $\hat H_0(x)=x, \hat H_\infty(x)=1$ (chg scale to $k(n)$ when $\beta=\infty$)
 - $\Phi^*(A)$: faces of $A$, including $A^o$ viewed as $d$-dim face
 - $D(\phi)$ is the dimension of the face $\phi$
 - $f_\phi = \inf_{x\in\phi} f(x)$ where $f$ is density
