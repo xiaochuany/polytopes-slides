@@ -1,7 +1,7 @@
 ---
 title: "Boundary effects in some stochastic geometric models"
-author: Xiaochuan Yang (Brunel University)
-institute: APATG seminar
+author: Xiaochuan Yang (Brunel)
+# institute: 
 date: today
 # subtitle: main effects of some problems in stochastic geometry
 format: 
@@ -20,7 +20,7 @@ Frankie Higgs and Mathew Penrose (University of Bath)
 
 ## largest nearest neighbour link 
 
-Given a sample $\mathcal X$ in $A$, the LNNL tells us how far the most isolated point is from the others
+Given a sample $\mathcal X$ in $A$, the LNNL tells us how far the most isolated point is from the others 
 
 
 - $L_n = \max_{x} dist(x, \mathcal X\setminus \{x\})$
@@ -181,10 +181,12 @@ $$\mathcal Y(\mbox{uncovered}_{r_n}) \to Po(.) \mbox{ for some } r_n  \Rightarro
 
 papers: 
 
-- 2 sample coverage (soon arxiv) 
-- polytope (JACT)
+- **Largest nearest-neighbour link and connectivity threshold in a polytopal random sample**  *Journal of Applied and Computational Topology*
+- **Covering one point process with another** *submitted*
 
 
 code: 
 
 https://github.com/frankiehiggs/connectivity-in-polytopes
+
+https://github.com/frankiehiggs/CovXY
