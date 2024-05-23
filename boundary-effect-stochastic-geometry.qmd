@@ -2,8 +2,8 @@
 title: "Boundary effects in some stochastic geometric models"
 author: Xiaochuan Yang (Brunel)
 # institute: 
-date: today
-# subtitle: main effects of some problems in stochastic geometry
+# date: today
+subtitle: Stochastic Geometry Days 2024 
 format: 
     revealjs:
         chalkboard: true
