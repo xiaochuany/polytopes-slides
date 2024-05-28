@@ -20,10 +20,10 @@ Frankie Higgs and Mathew Penrose (University of Bath)
 
 ## largest nearest neighbour link 
 
-Given a sample $\mathcal X$ in $A$, the LNNL tells us how far the most isolated point is from the others 
+Given a point cloud $\mathcal X$ in a metric space, the LNNL tells us how far the most isolated point is from the others 
 
 
-- $L_n = \max_{x} dist(x, \mathcal X\setminus \{x\})$
+- $L_n = \max_{x\in\mathcal X} dist(x, \mathcal X\setminus \{x\})$
 - $L_n = \inf\{r: \deg(x) \ge 1,  \ \forall x \in G(\mathcal X, r)\}$
 - 
 :::{.fragment .highlight-red}
@@ -102,32 +102,34 @@ let's implement this twice, 1 for torus,  2 for metric space
 :::
 
 
-## $n L_n^d \ge c\log n$: 
+## $n L_n^d \ge c\log n$: torus
 
 - assume $\{L_n \le r_n\}$ happens with $n r_n^d = c\log n$
-- at each $\varepsilon_1 r_n$ lattice point, EITHER non-activated OR at least two points within $(1+2\varepsilon_1)r_n$
-$$\mathbb P[ . \cup ..]\le  1 - \eta \mathbb P[\{..\}^c]$$
+- at each $\varepsilon_1 r_n$ lattice point, EITHER non-activated OR at least two points within $(1+2\sqrt{d}\varepsilon_1)r_n$
+$$\mathbb P[ . \cup ..] = 1 - \mathbb P[ \{.\}^c | \{..\}^c]\mathbb P[\{..\}^c] \le  1 - \eta \mathbb P[\{..\}^c]$$
   <!-- n\theta_d^+ r_n^d \exp(- n\theta_d^+ r_n^d) -->
 - keeps lattices distant $3r_n$ from each other, by independence
 $$ \mathbb (1- ...)^{c_1 r_n^{-d}} = O(\exp(-  n^{1-\theta_d c}))\to 0$$
 provided $c < 1/\theta_d$
 
-## $n L_n^d \ge c\log n$:
+## $n L_n^d \ge c\log n$: metric space
 
 
 - a portion of $A$ is $r$-packed with packing number $\Omega(r^{-b})$
-- $\mu(B(x,r))\ge a r^d$ for every $x$ in that portion
+- $\mu(B(x,r))\le a r^d$ for every $x$ in that portion
 
-$$ \mathbb (1- (\eta/k!) (n ar^d)^k e^{- n ar^d} )^{c_1 r_n^{-b}} = O(\exp(-   n^{b/d - ac}))\to 0$$
+$$ \mathbb (1- \eta (n ar^d) e^{- n ar^d} )^{c_1 r_n^{-b}} = O(\exp(-   n^{b/d - ac}))\to 0$$
 provided $c< (b/d)/a$
 
+- the ultimate lower bound is the max of these $(b/d)/a$ for all kinds of portions
 
-## $n M_n^d \le c\log n$: 
 
-suppose $\{M_n > r_n\}$ with $n r_n^d = c\log n$, then one of the following happens 
+## $n M_n^d \le c\log n$: torus
+
+suppose $\{M_n > r_n\}$ with $n r_n^d = c\log n$, then $\sharp$ clusters $\ge 2$, so one of the following happens 
 
 - $\exists$ isolated point
-- $\exists$ small clusters, $diam \le K r_n$
+- $\exists$ non-isolated small clusters, $0<diam \le K r_n$
 - $\exists$ two big clusters, $diam > K r_n$
 
 Implement granulation for each of the above cases. e.g.
@@ -135,13 +137,13 @@ $\mathbb P[\exists iso] \le r_n^{-d} \exp(  - c\theta_d \log n )= n^{1- c\theta_
 
 
 
-## $n M_n^d \le c\log n$: 
+## $n M_n^d \le c\log n$: metric space
 
 - a portion of $A$ is covered by $O(r^{-b})$ balls with radius $r$ and $\mu(B(x,r))\ge a r^d$ for each $x$ in that portion
 - $$\mathbb P[\exists iso \mbox{ in portion}]\le O(r_n^{-b}) \exp(- n a r_n^d) = n^{b/d - ac}\to 0$$
-provided $c>(b/d)/a$. 
-
-- small and big clusters are more complicated, draw on the back
+provided $c>(b/d)/a$.  
+- union bound says that max of $(b/d)/a$ of all portions is an upper bound  
+- small and big clusters are more complicated, draw on the back  
 
 
 :::{.callout-important}
@@ -190,3 +192,7 @@ code:
 https://github.com/frankiehiggs/connectivity-in-polytopes
 
 https://github.com/frankiehiggs/CovXY
+
+package:  
+
+https://github.com/xiaochuany/geography
