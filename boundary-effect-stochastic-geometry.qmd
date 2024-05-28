@@ -142,8 +142,8 @@ $\mathbb P[\exists iso] \le r_n^{-d} \exp(  - c\theta_d \log n )= n^{1- c\theta_
 - a portion of $A$ is covered by $O(r^{-b})$ balls with radius $r$ and $\mu(B(x,r))\ge a r^d$ for each $x$ in that portion
 - $$\mathbb P[\exists iso \mbox{ in portion}]\le O(r_n^{-b}) \exp(- n a r_n^d) = n^{b/d - ac}\to 0$$
 provided $c>(b/d)/a$.  
-- union bound says that max of $(b/d)/a$ of all portions is an upper bound  
-- small and big clusters are more complicated, draw on the back  
+- union bound: max of $(b/d)/a$ of all portions is an upper bound
+- small and big clusters are more complicated, draw 
 
 
 :::{.callout-important}
