@@ -358,9 +358,9 @@ Xiaochuan Yang (Brunel)
 </section>
 <section id="largest-nearest-neighbour-link" class="slide level2">
 <h2>largest nearest neighbour link</h2>
-<p>Given a sample <span class="math inline">\(\mathcal X\)</span> in <span class="math inline">\(A\)</span>, the LNNL tells us how far the most isolated point is from the others</p>
+<p>Given a point cloud <span class="math inline">\(\mathcal X\)</span> in a metric space, the LNNL tells us how far the most isolated point is from the others</p>
 <ul>
-<li><span class="math inline">\(L_n = \max_{x} dist(x, \mathcal X\setminus \{x\})\)</span></li>
+<li><span class="math inline">\(L_n = \max_{x\in\mathcal X} dist(x, \mathcal X\setminus \{x\})\)</span></li>
 <li><span class="math inline">\(L_n = \inf\{r: \deg(x) \ge 1,  \ \forall x \in G(\mathcal X, r)\}\)</span></li>
 <li><div class="fragment highlight-red">
 <p><span class="math inline">\(L_n = \inf\{r: \mathcal X(B(x,r))\ge 2, \ \forall x\in\mathcal X \}\)</span></p>
@@ -447,38 +447,44 @@ L_{n} \le R_{n,2}
 <p>let’s implement this twice, 1 for torus, 2 for metric space</p>
 </div>
 </section>
-<section id="n-l_nd-ge-clog-n" class="slide level2">
-<h2><span class="math inline">\(n L_n^d \ge c\log n\)</span>:</h2>
+<section id="n-l_nd-ge-clog-n-torus" class="slide level2">
+<h2><span class="math inline">\(n L_n^d \ge c\log n\)</span>: torus</h2>
 <ul>
 <li>assume <span class="math inline">\(\{L_n \le r_n\}\)</span> happens with <span class="math inline">\(n r_n^d = c\log n\)</span></li>
-<li>at each <span class="math inline">\(\varepsilon_1 r_n\)</span> lattice point, EITHER non-activated OR at least two points within <span class="math inline">\((1+2\varepsilon_1)r_n\)</span> <span class="math display">\[\mathbb P[ . \cup ..]\le  1 - \eta \mathbb P[\{..\}^c]\]</span> <!-- n\theta_d^+ r_n^d \exp(- n\theta_d^+ r_n^d) --></li>
+<li>at each <span class="math inline">\(\varepsilon_1 r_n\)</span> lattice point, EITHER non-activated OR at least two points within <span class="math inline">\((1+2\sqrt{d}\varepsilon_1)r_n\)</span> <span class="math display">\[\mathbb P[ . \cup ..] = 1 - \mathbb P[ \{.\}^c | \{..\}^c]\mathbb P[\{..\}^c] \le  1 - \eta \mathbb P[\{..\}^c]\]</span> <!-- n\theta_d^+ r_n^d \exp(- n\theta_d^+ r_n^d) --></li>
 <li>keeps lattices distant <span class="math inline">\(3r_n\)</span> from each other, by independence <span class="math display">\[ \mathbb (1- ...)^{c_1 r_n^{-d}} = O(\exp(-  n^{1-\theta_d c}))\to 0\]</span> provided <span class="math inline">\(c &lt; 1/\theta_d\)</span></li>
 </ul>
 </section>
-<section id="n-l_nd-ge-clog-n-1" class="slide level2">
-<h2><span class="math inline">\(n L_n^d \ge c\log n\)</span>:</h2>
+<section id="n-l_nd-ge-clog-n-metric-space" class="slide level2">
+<h2><span class="math inline">\(n L_n^d \ge c\log n\)</span>: metric space</h2>
 <ul>
 <li>a portion of <span class="math inline">\(A\)</span> is <span class="math inline">\(r\)</span>-packed with packing number <span class="math inline">\(\Omega(r^{-b})\)</span></li>
-<li><span class="math inline">\(\mu(B(x,r))\ge a r^d\)</span> for every <span class="math inline">\(x\)</span> in that portion</li>
+<li><span class="math inline">\(\mu(B(x,r))\le a r^d\)</span> for every <span class="math inline">\(x\)</span> in that portion</li>
 </ul>
-<p><span class="math display">\[ \mathbb (1- (\eta/k!) (n ar^d)^k e^{- n ar^d} )^{c_1 r_n^{-b}} = O(\exp(-   n^{b/d - ac}))\to 0\]</span> provided <span class="math inline">\(c&lt; (b/d)/a\)</span></p>
+<p><span class="math display">\[ \mathbb (1- \eta (n ar^d) e^{- n ar^d} )^{c_1 r_n^{-b}} = O(\exp(-   n^{b/d - ac}))\to 0\]</span> provided <span class="math inline">\(c&lt; (b/d)/a\)</span></p>
+<ul>
+<li>the ultimate lower bound is the max of these <span class="math inline">\((b/d)/a\)</span> for all kinds of portions</li>
+</ul>
 </section>
-<section id="n-m_nd-le-clog-n" class="slide level2">
-<h2><span class="math inline">\(n M_n^d \le c\log n\)</span>:</h2>
-<p>suppose <span class="math inline">\(\{M_n &gt; r_n\}\)</span> with <span class="math inline">\(n r_n^d = c\log n\)</span>, then one of the following happens</p>
+<section id="n-m_nd-le-clog-n-torus" class="slide level2">
+<h2><span class="math inline">\(n M_n^d \le c\log n\)</span>: torus</h2>
+<p>suppose <span class="math inline">\(\{M_n &gt; r_n\}\)</span> with <span class="math inline">\(n r_n^d = c\log n\)</span>, then <span class="math inline">\(\sharp\)</span> clusters <span class="math inline">\(\ge 2\)</span>, so one of the following happens</p>
 <ul>
 <li><span class="math inline">\(\exists\)</span> isolated point</li>
-<li><span class="math inline">\(\exists\)</span> small clusters, <span class="math inline">\(diam \le K r_n\)</span></li>
+<li><span class="math inline">\(\exists\)</span> non-isolated small clusters, <span class="math inline">\(0&lt;diam \le K r_n\)</span></li>
 <li><span class="math inline">\(\exists\)</span> two big clusters, <span class="math inline">\(diam &gt; K r_n\)</span></li>
 </ul>
 <p>Implement granulation for each of the above cases. e.g. <span class="math inline">\(\mathbb P[\exists iso] \le r_n^{-d} \exp(  - c\theta_d \log n )= n^{1- c\theta_d}\to 0\)</span> provided <span class="math inline">\(c&gt; 1/\theta_d\)</span>.</p>
 </section>
-<section id="n-m_nd-le-clog-n-1" class="slide level2">
-<h2><span class="math inline">\(n M_n^d \le c\log n\)</span>:</h2>
+<section id="n-m_nd-le-clog-n-metric-space" class="slide level2">
+<h2><span class="math inline">\(n M_n^d \le c\log n\)</span>: metric space</h2>
 <ul>
-<li><p>a portion of <span class="math inline">\(A\)</span> is covered by <span class="math inline">\(O(r^{-b})\)</span> balls with radius <span class="math inline">\(r\)</span> and <span class="math inline">\(\mu(B(x,r))\ge a r^d\)</span> for each <span class="math inline">\(x\)</span> in that portion</p></li>
-<li><p><span class="math display">\[\mathbb P[\exists iso \mbox{ in portion}]\le O(r_n^{-b}) \exp(- n a r_n^d) = n^{b/d - ac}\to 0\]</span> provided <span class="math inline">\(c&gt;(b/d)/a\)</span>.</p></li>
-<li><p>small and big clusters are more complicated, draw on the back</p></li>
+<li>a portion of <span class="math inline">\(A\)</span> is covered by <span class="math inline">\(O(r^{-b})\)</span> balls with radius <span class="math inline">\(r\)</span> and <span class="math inline">\(\mu(B(x,r))\ge a r^d\)</span> for each <span class="math inline">\(x\)</span> in that portion</li>
+<li><span class="math display">\[\mathbb P[\exists iso \mbox{ in portion}]\le O(r_n^{-b}) \exp(- n a r_n^d) = n^{b/d - ac}\to 0\]</span> provided <span class="math inline">\(c&gt;(b/d)/a\)</span>.<br>
+</li>
+<li>union bound says that max of <span class="math inline">\((b/d)/a\)</span> of all portions is an upper bound<br>
+</li>
+<li>small and big clusters are more complicated, draw on the back</li>
 </ul>
 <div class="callout callout-important callout-style-simple">
 <div class="callout-body">
@@ -533,6 +539,8 @@ L_{n} \le R_{n,2}
 <p>code:</p>
 <p>https://github.com/frankiehiggs/connectivity-in-polytopes</p>
 <p>https://github.com/frankiehiggs/CovXY</p>
+<p>package:</p>
+<p>https://github.com/xiaochuany/geography</p>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 
