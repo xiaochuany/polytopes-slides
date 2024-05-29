@@ -18,7 +18,7 @@ format:
 Frankie Higgs and Mathew Penrose (University of Bath)
 :::
 
-## largest nearest neighbour link 
+## Largest nearest neighbour link 
 
 Given a point cloud $\mathcal X$ in a metric space, the LNNL tells us how far the most isolated point is from the others 
 
@@ -35,7 +35,7 @@ similarly $L_{n,k}$
 :::
 
 
-## full coverage threshold
+## Full coverage threshold
 $$R_{n,k} = \inf\{ r: \mathcal X(B(x,r))\ge k, \ \forall x\in A \}$$
 
 - $$
@@ -43,7 +43,7 @@ L_{n} \le R_{n,2}
 $$
 - $$ L_{n,k} \le R_{n,k+1}$$
 
-## connectivity threshold
+## Connectivity threshold
 :::{.callout-note}
 A graph is $k$-connected, denoted $\mathcal K_k$, if the removal of $k-1$ vertices does not disconnect the graph. 
 :::
@@ -76,7 +76,7 @@ where $c$ depends on the geometry of $A$.
 :::
 ::::
 
-## finite convex polytope
+## Finite convex polytope
 
 Let $k=k(n)\sim \beta \log(n)$ with $\beta \in [0,\infty]$. Then 
 
