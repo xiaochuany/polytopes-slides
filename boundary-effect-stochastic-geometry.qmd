@@ -178,7 +178,7 @@ $$\mathcal Y(\mbox{uncovered}_{r_n}) \to Po(.) \mbox{ for some } r_n  \Rightarro
 
 
 
-## Thanks
+## Papers
 
 - **Largest nearest-neighbour link and connectivity threshold in a polytopal random sample**  *Journal of Applied and Computational Topology*
 - **Covering one point process with another** *submitted*
@@ -194,3 +194,6 @@ https://github.com/frankiehiggs/CovXY
 package:    
 
 https://github.com/xiaochuany/geography
+
+## Bonne anniversaire, Anne!
+
