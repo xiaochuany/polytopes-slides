@@ -3,7 +3,7 @@ title: "Boundary effects in some stochastic geometric models"
 author: Xiaochuan Yang (Brunel)
 # institute: 
 # date: today
-subtitle: Stochastic Geometry Days 2024 
+subtitle: Workshop on Stein's Method and Networks 
 format: 
     revealjs:
         chalkboard: true
@@ -195,5 +195,5 @@ package:
 
 https://github.com/xiaochuany/geography
 
-## Bonne anniversaire, Anne!
+## Thanks
 
