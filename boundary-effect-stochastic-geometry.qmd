@@ -1,6 +1,6 @@
 ---
 title: "Boundary effects in some stochastic geometric models"
-author: Xiaochuan Yang (Brunel)
+author: Xiaochuan Yang
 # institute: 
 # date: today
 subtitle: Workshop on Stein's Method and Networks 
@@ -186,14 +186,14 @@ $$\mathcal Y(\mbox{uncovered}_{r_n}) \to Po(.) \mbox{ for some } r_n  \Rightarro
 
 code: 
 
-https://github.com/frankiehiggs/connectivity-in-polytopes
+<https://github.com/frankiehiggs/connectivity-in-polytopes>
 
-https://github.com/frankiehiggs/CovXY
+<https://github.com/frankiehiggs/CovXY>
 
 
 package:    
 
-https://github.com/xiaochuany/geography
+<https://github.com/xiaochuany/geography>
 
 ## Thanks
 
